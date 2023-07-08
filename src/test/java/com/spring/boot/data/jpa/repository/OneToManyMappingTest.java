@@ -27,7 +27,7 @@ public class OneToManyMappingTest {
     order.setStatus("IN PROGRESS");
 
 
-      //create order item 1
+        //create order item 1
         OrderItem orderItem1 = new OrderItem();
         orderItem1.setProduct(productRepository.findById(1L).get());
         orderItem1.setQuantity(2);
@@ -40,7 +40,7 @@ public class OneToManyMappingTest {
         OrderItem orderItem2 = new OrderItem();
         orderItem2.setProduct(productRepository.findById(2L).get());
         orderItem2.setQuantity(3);
-        orderItem2.setPrice((orderItem1.getProduct().getPrice().multiply(new BigDecimal(3))));
+        orderItem2.setPrice((orderItem2.getProduct().getPrice().multiply(new BigDecimal(3))));
         orderItem2.setImageUrl("image1.png");
         //set order item to the order object
         order.getOrderItems().add(orderItem2);
@@ -56,9 +56,9 @@ public class OneToManyMappingTest {
         address.setState("Telangana");
         address.setCountry("India");
         address.setZipCode("500040");
-
+        //set address object to order
         order.setBillindAddress(address);
-
+        //cascade save to order, orderItem and address tables
         orderRepository.save(order);
     }
 
